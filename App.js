@@ -24,7 +24,11 @@ export default function App() {
         <Button title="Add Goal!" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        [courseGoals.map((goal) => <Text>{goal}</Text>)]
+        {courseGoals.map((goal) => (
+          <View key={goal} style={styles.goalItem}>
+            <Text>{goal}</Text>
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -55,5 +59,13 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
+  },
+  goalItem: {
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: "#cdcdcd",
+    borderColor: "green",
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
