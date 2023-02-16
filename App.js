@@ -92,6 +92,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-// romanian
-// Path: App.js
