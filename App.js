@@ -93,4 +93,5 @@ const styles = StyleSheet.create({
   },
 });
 
+// romanian
 // Path: App.js
