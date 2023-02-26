@@ -1,94 +1,79 @@
-import { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
-} from "react-native";
+import React from "react";
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import * as Google from "expo-google-app-auth";
 
-export default function App() {
-  const [enteredGoalText, setEteredGoalText] = useState("");
-  const [courseGoals, setCourseGoals] = useState([]);
+const GoogleLoginButton = () => {
+  const signInWithGoogleAsync = async () => {
+    try {
+      const result = await Google.logInAsync({
+        androidClientId: "YOUR_ANDROID_CLIENT_ID_HERE",
+        scopes: ["profile", "email"],
+      });
 
-  function goalInputHandler(enteredText) {
-    setEteredGoalText(enteredText);
-  }
-
-  function addGoalHandler() {
-    setCourseGoals((currentCourseGoal) => [
-      ...courseGoals,
-      { text: enteredGoalText, key: Math.random().toString() },
-    ]);
-  }
+      if (result.type === "success") {
+        console.log(result.user);
+      } else {
+        console.log("Login cancelled.");
+      }
+    } catch (e) {
+      console.log("Login error:", e);
+    }
+  };
 
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.inputConrainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Your course goal!!"
-          onChangeText={goalInputHandler}
-        />
-        <Button title="Add Goal!" onPress={addGoalHandler} />
-      </View>
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            itemData.index;
-            return (
-              <View key={goal} style={styles.goalItem}>
-                <Text style={styles.goalItemText}>{itemData.item}</Text>
-              </View>
-            );
-          }}
-          alwaysBounceVertical={false}
-        />
-      </View>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={signInWithGoogleAsync} style={styles.button}>
+        <View style={styles.logoWrapper}>
+          <Text style={styles.logoText}>G</Text>
+        </View>
+        <Text style={styles.buttonText}>Sign in with Google</Text>
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  appContainer: {
+  container: {
     flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
-  },
-
-  inputConrainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "lightgrey",
   },
-
-  textInput: {
-    width: "70%",
-    borderColor: "lightgrey",
-    borderWidth: 1,
-    padding: 10,
-  },
-  goalsContainer: {
-    flex: 5,
-  },
-  goalItem: {
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: "lightgreen",
-    borderColor: "white",
-    borderWidth: 1,
+  button: {
+    backgroundColor: "#fff",
     borderRadius: 5,
+    height: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
   },
-
-  goalItemText: {
-    color: "black",
+  logoWrapper: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: "#fff",
+    marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoText: {
+    color: "#4285F4",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  buttonText: {
+    color: "#424242",
     fontSize: 16,
+    fontWeight: "bold",
   },
 });
+
+export default GoogleLoginButton;
