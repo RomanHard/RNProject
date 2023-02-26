@@ -59,13 +59,18 @@ const LoginScreen = () => {
   };
 
   const handleRegisterPress = async () => {
-    const registrationInput = registerUsername.value;
-    const passwordInput = registerPassword.value;
+    const registrationInput = registerUsername;
+    const passwordInput = registerPassword;
     await AsyncStorage.setItem("registrationInput", registrationInput);
     await AsyncStorage.setItem("passwordInput", passwordInput);
 
-    if (registerUsername === "" || registerPassword === "") {
+    if (registerUsername.trim() === "" || registerPassword.trim() === "") {
       alert("Будь ласка, заповніть всі поля!");
+      return;
+    }
+
+    if (registerPassword.length < 4) {
+      alert("Пароль повинен містити щонайменше 4 символів!");
       return;
     }
     setRegisterUsername("");
