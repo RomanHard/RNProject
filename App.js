@@ -10,10 +10,10 @@ import {
 } from "react-native";
 
 export default function App() {
-  const [enteeredGoalText, setEteredGoalText] = useState("");
+  const [enteredGoalText, setEteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
 
-  function goalIntupHandler(enteredText) {
+  function goalInputHandler(enteredText) {
     setEteredGoalText(enteredText);
   }
 
@@ -29,13 +29,13 @@ export default function App() {
       <View style={styles.inputConrainer}>
         <TextInput
           style={styles.textInput}
-          placeholder="Your course goal!"
-          onChangeText={goalIntupHandler}
+          placeholder="Your course goal!!"
+          onChangeText={goalInputHandler}
         />
         <Button title="Add Goal!" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <FileList
+        <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
             itemData.index;
