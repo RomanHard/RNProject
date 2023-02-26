@@ -8,6 +8,7 @@ import {
   TextInput,
   Button,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,18 +35,43 @@ const LoginScreen = () => {
     setRegisterModalVisible(false);
   };
 
-  const handleLoginPress = () => {
-    // Handle login
-    // Navigate to new page
+  const handleLoginPress = async () => {
+    if (username === "" || password === "") {
+      alert("Будь ласка, заповніть всі поля!");
+      return;
+    }
+
+    const registrationInput = await AsyncStorage.getItem("registrationInput");
+    const passwordInput = await AsyncStorage.getItem("passwordInput");
+
+    if (username === registrationInput && password === passwordInput) {
+      alert("Ви успішно увійшли!");
+      setModalVisible(false);
+      setUsername("");
+      setPassword("");
+    } else {
+      alert("Неправильний логін або пароль!");
+    }
   };
 
   const handleRegister = () => {
     setRegisterModalVisible(true);
   };
 
-  const handleRegisterPress = () => {
-    // Handle registration
-    // Navigate to new page
+  const handleRegisterPress = async () => {
+    const registrationInput = registerUsername.value;
+    const passwordInput = registerPassword.value;
+    await AsyncStorage.setItem("registrationInput", registrationInput);
+    await AsyncStorage.setItem("passwordInput", passwordInput);
+
+    if (registerUsername === "" || registerPassword === "") {
+      alert("Будь ласка, заповніть всі поля!");
+      return;
+    }
+    setRegisterUsername("");
+    setRegisterPassword("");
+    setRegisterModalVisible(false);
+    // та перенаправлення користувача на нову сторінку
   };
 
   return (
