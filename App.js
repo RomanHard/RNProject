@@ -6,7 +6,7 @@ const GoogleLoginButton = () => {
   const signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync({
-        androidClientId: "YOUR_ANDROID_CLIENT_ID_HERE",
+        androidClientId: "AIzaSyC8vqTH689TqEOb9x7gfGQqRowLdtl8NJ0",
         scopes: ["profile", "email"],
       });
 
