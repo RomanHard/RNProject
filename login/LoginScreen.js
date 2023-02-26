@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const LoginScreen = () => {
+const LoginScreen = ({ onUserData }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -46,9 +46,11 @@ const LoginScreen = () => {
 
     if (username === registrationInput && password === passwordInput) {
       alert("Ви успішно увійшли!");
-      setModalVisible(false);
+      onUserData({ username, password });
       setUsername("");
       setPassword("");
+      setModalVisible(false);
+      onSuccessfulLogin();
     } else {
       alert("Неправильний логін або пароль!");
     }
@@ -75,7 +77,9 @@ const LoginScreen = () => {
     }
     setRegisterUsername("");
     setRegisterPassword("");
-    setRegisterModalVisible(false);
+    setModalVisible(false);
+    onSuccessfulLogin();
+
     // та перенаправлення користувача на нову сторінку
   };
 
