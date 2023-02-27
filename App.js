@@ -11,16 +11,19 @@ const App = () => {
     setIsLoggedIn(true);
   };
 
-  const handleUserData = (data) => {
+  const onUserData = (data) => {
     setUserData(data);
   };
 
   return (
     <View style={styles.container}>
       {isLoggedIn ? (
-        <NewScreen data={userData} />
+        <NewScreen data={onUserData} />
       ) : (
-        <LoginScreen onSuccessfulLogin={handleSuccessfulLogin} />
+        <LoginScreen
+          onSuccessfulLogin={handleSuccessfulLogin}
+          onUserData={onUserData}
+        />
       )}
     </View>
   );

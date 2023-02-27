@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const LoginScreen = ({ onUserData }) => {
+const LoginScreen = ({ onUserData, onSuccessfulLogin }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,6 +43,10 @@ const LoginScreen = ({ onUserData }) => {
 
     const registrationInput = await AsyncStorage.getItem("registrationInput");
     const passwordInput = await AsyncStorage.getItem("passwordInput");
+    onUserData({
+      username: username,
+      password: password,
+    });
 
     if (username === registrationInput && password === passwordInput) {
       alert("Ви успішно увійшли!");
