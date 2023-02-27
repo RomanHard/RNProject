@@ -72,7 +72,7 @@ const LoginScreen = ({ onUserData }) => {
     }
 
     if (registerPassword.length < 4) {
-      alert("Пароль повинен містити щонайменше 4 символів!");
+      alert("Пароль повинен містити щонайменше 4 символа!");
       return;
     }
     setRegisterUsername("");
