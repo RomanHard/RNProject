@@ -20,10 +20,11 @@ const LoginScreen = ({ onUserData, onSuccessfulLogin }) => {
 
   const handleGoogleLogin = () => {
     // Handle Google login
+    alert("Трошки пізніше... поки що зареєструйтесь через форму нижче");
   };
 
   const handleAppleLogin = () => {
-    // Handle Apple login
+    alert("Трошки пізніше... поки що зареєструйтесь через форму нижче");
   };
 
   const handleLogin = () => {
@@ -83,8 +84,6 @@ const LoginScreen = ({ onUserData, onSuccessfulLogin }) => {
     setRegisterPassword("");
     setModalVisible(false);
     onSuccessfulLogin();
-
-    // та перенаправлення користувача на нову сторінку
   };
 
   return (
