@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 const NewScreen = (props) => {
   return (
     <View style={styles.container}>
-      <Text>Welcome, {props.data.username}!</Text>
+      <Text>Welcome!</Text>
     </View>
   );
 };

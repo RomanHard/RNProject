@@ -18,7 +18,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       {isLoggedIn ? (
-        <NewScreen data={onUserData} />
+        <NewScreen />
       ) : (
         <LoginScreen
           onSuccessfulLogin={handleSuccessfulLogin}
