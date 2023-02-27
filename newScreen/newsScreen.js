@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 const NewScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Welcome!</Text>
+      <Text>Нехай це буде головна сторінка</Text>
     </View>
   );
 };
